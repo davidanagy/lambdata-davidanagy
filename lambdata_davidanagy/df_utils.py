@@ -4,6 +4,14 @@ utility functions for working with pandas dataframes
 import pandas as pd
 import numpy as np
 
+TEST_DF1 = pd.DataFrame({'ones': [1] * 10, 'twos': [2] * 10})
+TEST_DF2 = pd.DataFrame(
+    {'dates': ['1/1/2000'] * 10,
+    'one_nan': [2] * 9 + [np.nan],
+    'ten_nans': [np.nan] * 10})
+
+TEST_LIST1 = [3] * 10
+TEST_LIST2 = [8,3,5,3,3,5,5,8,3,5]
 
 class Dataframe_funcs:
 
@@ -34,8 +42,7 @@ class Dataframe_funcs:
                     # Separating this out so I get the singular noun.
                     nulls += 1
                 else:
-                    print(f'Column "{columns[i]}" contains \
-                        {nan_num} missing values.')
+                    print(f'Column "{columns[i]}" contains {nan_num} missing values.')
                     nulls += nan_num
             if nulls == 0:
                 print('This dataset contains no missing values!')
