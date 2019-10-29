@@ -3,7 +3,6 @@ utility functions for working with pandas dataframes
 """ 
 import pandas as pd
 import numpy as np
-TEST_DF = pd.DataFrame('col1': [1,2,3,4,5], 'col2': [6,7,8,9,10])
 
 def check_nulls(X): # Checks a dataframe for nulls and reports them in a nice "pretty" format.
     columns = X.columns
