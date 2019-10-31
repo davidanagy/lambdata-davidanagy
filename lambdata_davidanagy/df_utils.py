@@ -172,14 +172,18 @@ class Stats_funcs:
                 Y = X.sample(frac=1, random_state=random_state)
                 Y = Y.reset_index()
                 # Resetting the index so the .loc command works properly.
-                test_rows = np.round(len(Y) * test_size)
-                if test_rows == 0:
-                    test_rows == 1
+                test_rows = np.round(len(Y) * test_size) - 1
+                # Subtracting by one because I'm going to be running .loc
+                # over Y's index, and the index starts at 0.
+                if test_rows == -1:
+                    test_rows == 0
                 # Setting test_rows and val_rows first
-                # to make sure neither equals 0 in small datasets.
+                # to make sure neither equals -1 in small datasets.
                 val_rows = np.round(len(Y) * val_size)
                 if val_rows == 0:
                     val_rows == 1
+                # Now that I'm past the first row, we're not starting
+                # at zero, so there's no need to subtract 1 from val_rows.
                 test = Y.loc[0:test_rows].set_index('index')
                 # Putting back the original index.
                 # User then has the choice to use reset_index themselves.
@@ -206,9 +210,9 @@ class Stats_funcs:
                     # equals a certain value.
                     temp2 = temp.sample(frac=1, random_state=random_state)
                     temp2 = temp2.reset_index()
-                    test_rows = np.round(len(temp2) * test_size)
-                    if test_rows == 0:
-                        test_rows == 1
+                    test_rows = np.round(len(temp2) * test_size) - 1
+                    if test_rows == -1:
+                        test_rows == 0
                     val_rows = np.round(len(temp2) * val_size)
                     if val_rows == 0:
                         val_rows == 1
@@ -236,14 +240,17 @@ class Stats_funcs:
                 test_rows = np.round(len(X) * test_size)
                 if test_rows == 0:
                     test_rows == 1
+                # This time I'm going to do .loc starting with
+                # the train rows, so train_rows will be the value
+                # that I have to subtract 1 from.
                 val_rows = np.round(len(X) * val_size)
                 if val_rows == 0:
                     val_rows == 1
-                train_rows = len(X) - (test_rows + val_rows)
+                train_rows = len(X) - (test_rows + val_rows) - 1
                 train = X.loc[0:train_rows]
                 # Doing train first this time because
                 # that's more intuitive when there's no shuffling.
-                val = X.loc[train_rows+1, train_rows+val_rows]
-                test = X.loc[train_rows+val_rows+1, len(X)]
+                val = X.loc[train_rows+1:train_rows+val_rows]
+                test = X.loc[train_rows+val_rows+1:len(X)]
 
         return train, val, test

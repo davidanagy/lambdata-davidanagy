@@ -9,6 +9,8 @@ twine = "*"
 [packages]
 numpy = "*"
 pandas = "*"
+lambdata-davidanagy = {index = "https://test.pypi.org/simple/",version = "*"}
+cstringio = "*"
 
 [requires]
 python_version = "3.7"
