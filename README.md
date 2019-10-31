@@ -4,7 +4,7 @@ This is a practice repository for my Lambda School assignment (Unit 3 Sprint 1).
 
 This module includes functions designed by me to help with data science-related coding.
 
-[Here's a link](https://test.pypi.org/project/lambdata-davidanagy/0.1.5/) to the current version, if you want to import my functions and use them.
+[Here's a link](https://test.pypi.org/project/lambdata-davidanagy/0.1.6/) to the current version, if you want to import my functions and use them.
 
 # Features
 
