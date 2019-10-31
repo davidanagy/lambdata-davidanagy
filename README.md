@@ -24,34 +24,34 @@ zero_nan | one_nan | all_nan
 
 Here's how we sum up the missing values with pandas:
 
-'''python
+```python
 import pandas as pd
 df.isnull().sum()
-'''
+```
 
 Which gives us:
 
-'''
+```
 zero_nan    0
 one_nan     1
 all_nan     3
-'''
+```
 
 On the other hand, my check_nulls function:
 
-'''python
+```python
 from lambdata_davidanagy.df_utils import Dataframe_funcs
 func = Dataframe_funcs()
 func.check_nulls(df)
-'''
+```
 
 Results in:
 
-'''
+```
 Column "one_nan" contains 1 missing value.
 Column "all_nan" contains 3 missing values.
 This dataset contains 4 missing values.
-'''
+```
 
 ### add_list_to_df
 
